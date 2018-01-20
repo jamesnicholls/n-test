@@ -1,34 +1,35 @@
 {
-    "name": "@financial-times/n-test",
-    "version": "0.0.0",
-    "description": "A node module containing a collection of test tasks and utilities for Next applications",
-    "main": "index.js",
-    "bin": {
-        "n-test": "./bin/n-test.js"
-    },
-    "scripts": {
-        "test": "make test",
-        "precommit": "node_modules/.bin/secret-squirrel",
-        "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
-        "prepush": "make verify -j3"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Financial-Times/n-test.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Financial-Times/n-test/issues"
-    },
-    "homepage": "https://github.com/Financial-Times/n-test#readme",
-    "dependencies": {
-        "commander": "^2.13.0",
-        "jest": "^22.0.6",
-        "puppeteer": "^1.0.0"
-    },
-    "devDependencies": {
-        "@financial-times/n-gage": "^1.19.2",
-        "express": "^4.16.2"
-    }
+  "name": "@financial-times/n-test",
+  "version": "0.0.0",
+  "description": "A node module containing a collection of test tasks and utilities for Next applications",
+  "main": "index.js",
+  "bin": {
+    "n-test": "./bin/n-test.js"
+  },
+  "scripts": {
+    "test": "make test",
+    "precommit": "node_modules/.bin/secret-squirrel",
+    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
+    "prepush": "make verify -j3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Financial-Times/n-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Financial-Times/n-test/issues"
+  },
+  "homepage": "https://github.com/Financial-Times/n-test#readme",
+  "dependencies": {
+    "commander": "^2.13.0",
+    "jest": "^22.0.6",
+    "mocha": "^5.0.0",
+    "puppeteer": "^1.0.0"
+  },
+  "devDependencies": {
+    "@financial-times/n-gage": "^1.19.2",
+    "express": "^4.16.2"
+  }
 }

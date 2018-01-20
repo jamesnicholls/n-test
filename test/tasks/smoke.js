@@ -3,63 +3,63 @@
 const server = require('../server/app');
 const smoke = require('../../lib/smoke');
 
+const expect = require('chai').expect;
+
 describe('Smoke Tests of the Smoke', () => {
 
-	beforeAll(() => {
+	before(() => {
 		//Start the server
 		server.listen(3004);
 	});
 
-	describe('status checks', () => {
-		test('tests should pass if all the urls return the correct status', async () => {
+	context('status checks', () => {
+		it('tests should pass if all the urls return the correct status',  (done) => {
 
-			return smoke.run({
+			smoke.run({
 				host: 'http://localhost:3004',
 				config: 'test/fixtures/smoke-status-pass.js'
 			})
-			.then(({results}) => {
-				expect(results.numPassedTests).toEqual(7);
-				expect(results.numFailedTests).toEqual(0);
-
+			.then((failures) => {
+				expect(failures).to.equal(0);
+				done();
 			});
 		});
 
-		test('tests should fail if some urls return the incorrect status code', async () => {
+		it('tests should fail if some urls return the incorrect status code', (done) => {
 
-			return smoke.run({
+			smoke.run({
 				host: 'http://localhost:3004',
 				config: 'test/fixtures/smoke-status-fail.js',
 			})
-			.then(({results}) => {
-				expect(results.numPassedTests).toEqual(1);
-				expect(results.numFailedTests).toEqual(1);
+			.catch((failures) => {
+				expect(failures).to.equal(2);
+				done();
 			});
 		});
 	});
 
-	describe('CSS coverage', () => {
-		test('tests should pass if CSS is well covered', async () => {
+	context('CSS coverage', () => {
+		it('tests should pass if CSS is well covered', (done) => {
 
-			return smoke.run({
+			smoke.run({
 				host: 'http://localhost:3004',
 				config: 'test/fixtures/smoke-coverage-pass.js'
 			})
-			.then(({results}) => {
-				expect(results.numPassedTests).toEqual(2);
-				expect(results.numFailedTests).toEqual(0);
-
+			.then((failures) => {
+				expect(failures).to.equal(0);
+				done();
 			});
 		});
 
-		test('tests should fail if CSS coverage is below threshold', async () => {
+		it('tests should fail if CSS coverage is below threshold', (done) => {
 
-			return smoke.run({
+			smoke.run({
 				host: 'http://localhost:3004',
 				config: 'test/fixtures/smoke-coverage-fail.js',
 			})
-			.then(({results}) => {
-				expect(results.numPassedTests).toEqual(0);
-				expect(results.numFailedTests).toEqual(2);
+			.catch((failures) => {
+				expect(failures).to.equal(2);
+				done();
 			});
 		});
 	});

@@ -5,4 +5,4 @@ node_modules/@financial-times/n-gage/index.mk:
 -include node_modules/@financial-times/n-gage/index.mk
 
 test:
-	jest test/tasks/*.js --forceExit
+	mocha test/tasks/*.js --exit
